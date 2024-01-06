@@ -1,5 +1,3 @@
-//Use sleep(duration) from unistd.h to print two lines, one 10 seconds after another
-
 #include <stdio.h>
 #include <unistd.h>
 #include <time.h>

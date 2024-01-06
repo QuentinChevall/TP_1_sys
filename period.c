@@ -1,9 +1,10 @@
-//Define a global common period of the tasks (each task has same
-//period), using timer function, implement release of each task at the period
+//execute tasks at the period (same time) using timer function
+//mplement release of each task at the period
+
+
 
 #include <stdio.h>
 #include <time.h>
-#include <unistd.h>
 
 void printTime()
 {
@@ -32,15 +33,20 @@ void task3()
 
 int main()
 {
-    int period = 3;
-    int i;
-    for(i=0;i<3;i++)
+    clock_t t;
+    t = clock();
+    clock_t t1;
+    int end = 0;
+    while (end == 0)
     {
-        task1();
-        task2();
-        task3();
-        sleep(period);
-    }
+        t1 = clock();
+        if ((float)(t1-t)/CLOCKS_PER_SEC > 3)
+        {
+            task1();
+            task2();
+            task3();
+            end = 1;
+        }  
+    }    
     return 0;
 }
-

@@ -1,5 +1,3 @@
-// Use pthread.h to create one thread which prints “Hello World”
-
 #include <stdio.h>
 #include <pthread.h>
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Number of iterations
-iterations=10000
+iterations=1000
 
 # Commands to execute
 commands=("./Binary" "./temperature" "./working" "./multiplication")
@@ -12,8 +12,8 @@ for command in "${commands[@]}"; do
     max_execution_time=0
 
     for ((i=0; i<$iterations; i++)); do
-        # Execute the command here and measure the execution time with time -f
-        output=$(/usr/bin/time -f "%e" $command 2>&1)
+        # Execute the command here and measure the execution time with time -p
+        output=$(/usr/bin/time -p $command 2>&1 | awk '/real/ {print $2}')
         # Retrieve the execution time if it is in the expected format
         if [[ $output =~ ^[0-9]+\.[0-9]+$ ]]; then
             # Convert the time to milliseconds without rounding

@@ -97,14 +97,14 @@
 #define mainQUEUE_SEND_TASK_PRIORITY       ( tskIDLE_PRIORITY + 1 )
 /* The rate at which data is sent to the queue.  The times are converted from
  * milliseconds to ticks using the pdMS_TO_TICKS() macro. */
-//working frequency is 0.0405 seconds
-#define WORKING_FREQUENCY_MS              pdMS_TO_TICKS( 405UL )
-//temperature frequency is 0.0315 seconds
-#define TEMPERATURE_FREQUENCY_MS          pdMS_TO_TICKS( 315UL )
-//multiplication frequency is 0.297 seconds
-#define MULTIPLICATION_FREQUENCY_MS       pdMS_TO_TICKS( 297UL )
-//binary search frequency is 0.027 seconds
-#define BINARYSEARCH_FREQUENCY_MS         pdMS_TO_TICKS( 27UL )
+//working frequency is 0.18 seconds
+#define WORKING_FREQUENCY_MS              pdMS_TO_TICKS( 180UL )
+//temperature frequency is 0.18 seconds
+#define TEMPERATURE_FREQUENCY_MS          pdMS_TO_TICKS( 180UL )
+//multiplication frequency is 0.18 seconds
+#define MULTIPLICATION_FREQUENCY_MS       pdMS_TO_TICKS( 180UL )
+//binary search frequency is 0.18 seconds
+#define BINARYSEARCH_FREQUENCY_MS         pdMS_TO_TICKS( 180UL )
 
 
 /* The number of items the queue can hold at once. */
@@ -112,7 +112,7 @@
 
 /* The values sent to the queue receive task from the queue send task and the
  * queue send software timer respectively. */
-#define mainVALUE_SENT_FROM_TASK           ( 100UL )
+#define mainVALUE_SENT_FROM_TASK           ( 100UL ) 
 #define mainVALUE_SENT_FROM_TIMER          ( 200UL )
 
 /*-----------------------------------------------------------*/
@@ -213,7 +213,7 @@ static void working( void * pvParameters )
 static void temperature( void * pvParameters )
 {
     TickType_t xNextWakeTime;
-    const TickType_t xBlockTime = WORKING_FREQUENCY_MS;
+    const TickType_t xBlockTime = TEMPERATURE_FREQUENCY_MS;
     const uint32_t ulValueToSend = mainVALUE_SENT_FROM_TASK;
 
     /* Prevent the compiler warning about the unused parameter. */
@@ -247,7 +247,7 @@ static void temperature( void * pvParameters )
 static void Multiplication( void * pvParameters )
 {
     TickType_t xNextWakeTime;
-    const TickType_t xBlockTime = WORKING_FREQUENCY_MS;
+    const TickType_t xBlockTime = MULTIPLICATION_FREQUENCY_MS;
     const uint32_t ulValueToSend = mainVALUE_SENT_FROM_TASK;
 
     /* Prevent the compiler warning about the unused parameter. */
@@ -282,7 +282,7 @@ static void Multiplication( void * pvParameters )
 static void BinarySearch( void * pvParameters )
 {
     TickType_t xNextWakeTime;
-    const TickType_t xBlockTime = WORKING_FREQUENCY_MS;
+    const TickType_t xBlockTime = BINARYSEARCH_FREQUENCY_MS;
     const uint32_t ulValueToSend = mainVALUE_SENT_FROM_TASK;
 
     /* Prevent the compiler warning about the unused parameter. */

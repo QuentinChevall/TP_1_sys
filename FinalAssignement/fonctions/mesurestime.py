@@ -2,7 +2,7 @@ import subprocess
 import re
 
 # Number of iterations
-iterations = 10000
+iterations = 1000
 
 # Commands to execute
 noms = ["Binary", "temperature", "working", "multiplication"]
@@ -26,4 +26,4 @@ for command in commands:
 
 # Print max time for each task
 for i in range(len(max_time)):
-    print("Max time for task " + str(i) + " : " + str(max_time[i]) + " s")
+    print("Max time for task " + noms[i] + " : " + str(max_time[i]) + " s")
